@@ -43,6 +43,7 @@ open class MZPDFDocument: Codable {
     /// Image cache with the page index and and image of the page
     let images = NSCache<NSNumber, UIImage>()
     
+    
     func loadDocument() throws {
         if let fileURL = self.fileUrl {
             self.documentRef = try CGPDFDocument.create(url: fileURL, password: self.password)
@@ -176,6 +177,7 @@ open class MZPDFDocument: Codable {
         self.password = password
         self.fileUrl = URL(fileURLWithPath: filePath, isDirectory: false)
         self.lastOpen = Date()
+    
         
         try self.loadDocument()
         

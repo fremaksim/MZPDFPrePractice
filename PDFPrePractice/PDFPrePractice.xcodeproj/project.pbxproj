@@ -8,6 +8,17 @@
 
 /* Begin PBXBuildFile section */
 		61E7020A43A31F6F788C80A3 /* Pods_PDFPrePractice.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 305ED8B08319D85E4B08F5B0 /* Pods_PDFPrePractice.framework */; };
+		6A386C5521A4F256003918DC /* MZPDFTrackControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A386C5421A4F256003918DC /* MZPDFTrackControl.swift */; };
+		6A386C5721A505BD003918DC /* MZPDFThumbView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A386C5621A505BD003918DC /* MZPDFThumbView.swift */; };
+		6A386C5921A508CB003918DC /* MZPDFPageBarThumb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A386C5821A508CB003918DC /* MZPDFPageBarThumb.swift */; };
+		6A3CD19221A5574F004B5E34 /* MZPDFThumbRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A3CD19121A5574F004B5E34 /* MZPDFThumbRequest.swift */; };
+		6A3CD19421A55FAE004B5E34 /* MZPDFThumbCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A3CD19321A55FAE004B5E34 /* MZPDFThumbCache.swift */; };
+		6A3CD19621A571A4004B5E34 /* MZPDFThumbOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A3CD19521A571A4004B5E34 /* MZPDFThumbOperation.swift */; };
+		6A3CD19821A57248004B5E34 /* MZPDFThumbFetch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A3CD19721A57248004B5E34 /* MZPDFThumbFetch.swift */; };
+		6A3CD19A21A57C34004B5E34 /* MZPDFThumbRender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A3CD19921A57C34004B5E34 /* MZPDFThumbRender.swift */; };
+		6A3CD19C21A636F2004B5E34 /* MZPDFThumbQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A3CD19B21A636F2004B5E34 /* MZPDFThumbQueue.swift */; };
+		6A3CD19E21A65958004B5E34 /* javaScript.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 6A3CD19D21A65958004B5E34 /* javaScript.pdf */; };
+		6A3FFA0421A431780017580F /* MZPDFMainPageBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A3FFA0321A431780017580F /* MZPDFMainPageBar.swift */; };
 		6A432922218FDFF9003C1A09 /* MZPDFAnnotationStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A432921218FDFF8003C1A09 /* MZPDFAnnotationStore.swift */; };
 		6A432924218FF60D003C1A09 /* sample.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 6A432923218FF60D003C1A09 /* sample.pdf */; };
 		6A8A6D942191A65600965C7D /* SplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A8A6D932191A65600965C7D /* SplitViewController.swift */; };
@@ -36,6 +47,17 @@
 
 /* Begin PBXFileReference section */
 		305ED8B08319D85E4B08F5B0 /* Pods_PDFPrePractice.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PDFPrePractice.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6A386C5421A4F256003918DC /* MZPDFTrackControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MZPDFTrackControl.swift; sourceTree = "<group>"; };
+		6A386C5621A505BD003918DC /* MZPDFThumbView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MZPDFThumbView.swift; sourceTree = "<group>"; };
+		6A386C5821A508CB003918DC /* MZPDFPageBarThumb.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MZPDFPageBarThumb.swift; sourceTree = "<group>"; };
+		6A3CD19121A5574F004B5E34 /* MZPDFThumbRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MZPDFThumbRequest.swift; sourceTree = "<group>"; };
+		6A3CD19321A55FAE004B5E34 /* MZPDFThumbCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MZPDFThumbCache.swift; sourceTree = "<group>"; };
+		6A3CD19521A571A4004B5E34 /* MZPDFThumbOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MZPDFThumbOperation.swift; sourceTree = "<group>"; };
+		6A3CD19721A57248004B5E34 /* MZPDFThumbFetch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MZPDFThumbFetch.swift; sourceTree = "<group>"; };
+		6A3CD19921A57C34004B5E34 /* MZPDFThumbRender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MZPDFThumbRender.swift; sourceTree = "<group>"; };
+		6A3CD19B21A636F2004B5E34 /* MZPDFThumbQueue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MZPDFThumbQueue.swift; sourceTree = "<group>"; };
+		6A3CD19D21A65958004B5E34 /* javaScript.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = javaScript.pdf; sourceTree = "<group>"; };
+		6A3FFA0321A431780017580F /* MZPDFMainPageBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MZPDFMainPageBar.swift; sourceTree = "<group>"; };
 		6A432921218FDFF8003C1A09 /* MZPDFAnnotationStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MZPDFAnnotationStore.swift; sourceTree = "<group>"; };
 		6A432923218FF60D003C1A09 /* sample.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = sample.pdf; sourceTree = "<group>"; };
 		6A8A6D932191A65600965C7D /* SplitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitViewController.swift; sourceTree = "<group>"; };
@@ -86,9 +108,33 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		6A3CD19021A5571A004B5E34 /* Cache */ = {
+			isa = PBXGroup;
+			children = (
+				6A3CD19121A5574F004B5E34 /* MZPDFThumbRequest.swift */,
+				6A3CD19321A55FAE004B5E34 /* MZPDFThumbCache.swift */,
+				6A3CD19521A571A4004B5E34 /* MZPDFThumbOperation.swift */,
+				6A3CD19721A57248004B5E34 /* MZPDFThumbFetch.swift */,
+				6A3CD19921A57C34004B5E34 /* MZPDFThumbRender.swift */,
+				6A3CD19B21A636F2004B5E34 /* MZPDFThumbQueue.swift */,
+			);
+			path = Cache;
+			sourceTree = "<group>";
+		};
+		6A3FFA0221A431510017580F /* PageBar */ = {
+			isa = PBXGroup;
+			children = (
+				6A3FFA0321A431780017580F /* MZPDFMainPageBar.swift */,
+				6A386C5421A4F256003918DC /* MZPDFTrackControl.swift */,
+				6A386C5821A508CB003918DC /* MZPDFPageBarThumb.swift */,
+			);
+			path = PageBar;
+			sourceTree = "<group>";
+		};
 		6ABB7BBD218BFC8900C78BA3 = {
 			isa = PBXGroup;
 			children = (
+				6A3CD19D21A65958004B5E34 /* javaScript.pdf */,
 				6A432923218FF60D003C1A09 /* sample.pdf */,
 				6ABB7BC8218BFC8A00C78BA3 /* PDFPrePractice */,
 				6ABB7BC7218BFC8A00C78BA3 /* Products */,
@@ -140,9 +186,12 @@
 		6ABB7BDC218C034600C78BA3 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				6A3CD19021A5571A004B5E34 /* Cache */,
+				6A3FFA0221A431510017580F /* PageBar */,
 				6AC6B03621A3DF240016487F /* MZPDFPageCollectionViewCell.swift */,
 				6AC6B04021A3EA5E0016487F /* MZPDFPageView.swift */,
 				6AC6B04221A3EB010016487F /* MZPDFTiledView.swift */,
+				6A386C5621A505BD003918DC /* MZPDFThumbView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -288,6 +337,7 @@
 			files = (
 				6A432924218FF60D003C1A09 /* sample.pdf in Resources */,
 				6ABB7BD4218BFC8B00C78BA3 /* LaunchScreen.storyboard in Resources */,
+				6A3CD19E21A65958004B5E34 /* javaScript.pdf in Resources */,
 				6ABB7BD1218BFC8B00C78BA3 /* Assets.xcassets in Resources */,
 				6ABB7BCF218BFC8A00C78BA3 /* Main.storyboard in Resources */,
 			);
@@ -301,15 +351,11 @@
 			buildActionMask = 2147483647;
 			files = (
 			);
-			inputFileListPaths = (
-			);
 			inputPaths = (
 				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
 				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
 			outputPaths = (
 				"$(DERIVED_FILE_DIR)/Pods-PDFPrePractice-checkManifestLockResult.txt",
 			);
@@ -322,8 +368,6 @@
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-			);
-			inputFileListPaths = (
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-PDFPrePractice/Pods-PDFPrePractice-frameworks.sh",
@@ -338,8 +382,6 @@
 				"${BUILT_PRODUCTS_DIR}/SwiftyBeaver/SwiftyBeaver.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-			);
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AFNetworking.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
@@ -364,9 +406,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				6AC6B03F21A3E7530016487F /* LogManager.swift in Sources */,
+				6A3CD19421A55FAE004B5E34 /* MZPDFThumbCache.swift in Sources */,
 				6ABB7BE2218C03AA00C78BA3 /* MZPDFDocument.swift in Sources */,
+				6A3CD19221A5574F004B5E34 /* MZPDFThumbRequest.swift in Sources */,
+				6A3CD19621A571A4004B5E34 /* MZPDFThumbOperation.swift in Sources */,
 				6AC6B03521A3B8FE0016487F /* MZPDFReaderViewModel.swift in Sources */,
 				6AF982B02191AC60004C16C1 /* NavigationViewController.swift in Sources */,
+				6A3CD19821A57248004B5E34 /* MZPDFThumbFetch.swift in Sources */,
 				6A8A6D942191A65600965C7D /* SplitViewController.swift in Sources */,
 				6AED08DA219178B800ACC93B /* FileType.swift in Sources */,
 				6ABB7BCC218BFC8A00C78BA3 /* ViewController.swift in Sources */,
@@ -375,10 +421,16 @@
 				6AC6B03C21A3E0660016487F /* UITableViewCellExtensions.swift in Sources */,
 				6A8A6D962191A6A200965C7D /* AppCoordinator.swift in Sources */,
 				6AF982AD2191ABF7004C16C1 /* InCoordinator.swift in Sources */,
+				6A3FFA0421A431780017580F /* MZPDFMainPageBar.swift in Sources */,
+				6A386C5921A508CB003918DC /* MZPDFPageBarThumb.swift in Sources */,
 				6A432922218FDFF9003C1A09 /* MZPDFAnnotationStore.swift in Sources */,
+				6A3CD19A21A57C34004B5E34 /* MZPDFThumbRender.swift in Sources */,
 				6AC6B04521A3EDBF0016487F /* MZPDFPageCache.swift in Sources */,
+				6A386C5721A505BD003918DC /* MZPDFThumbView.swift in Sources */,
+				6A3CD19C21A636F2004B5E34 /* MZPDFThumbQueue.swift in Sources */,
 				6ABB7BE4218C195000C78BA3 /* MZCGPDFDocument.swift in Sources */,
 				6AC6B03321A3B8A30016487F /* MZPDFReaderViewController.swift in Sources */,
+				6A386C5521A4F256003918DC /* MZPDFTrackControl.swift in Sources */,
 				6AC6B03721A3DF240016487F /* MZPDFPageCollectionViewCell.swift in Sources */,
 				6ABB7BCA218BFC8A00C78BA3 /* AppDelegate.swift in Sources */,
 				6AF982AB2191AAEB004C16C1 /* Coordinator.swift in Sources */,

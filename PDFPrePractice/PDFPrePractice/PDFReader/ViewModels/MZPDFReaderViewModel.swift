@@ -13,7 +13,11 @@ final class MZPDFReaderViewModel {
     // MARK: - Inputs
     let document: MZPDFDocument
     
-    var currentPageIndex: Int = 0
+    var currentPageIndex: Int = 1 {
+        didSet{
+            document.currentPage = currentPageIndex
+        }
+    }
     
     var backgroundColor: UIColor = .lightGray
     

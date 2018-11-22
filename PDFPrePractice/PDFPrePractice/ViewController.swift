@@ -31,7 +31,7 @@ class ViewController: UIViewController {
                 //                let document = try! MZPDFDocument(filePath: url, password: "")
                 //                print(document.lastOpen)
 //               goToQuickLook()
-             goToPDFReader(data: data as Data)
+//             goToPDFReader(data: data as Data)
                 
             case .unSupported:
                 print("unSupported")
@@ -48,13 +48,21 @@ class ViewController: UIViewController {
         navigationController?.pushViewController(preViewController, animated: true)
     }
     
-    private func goToPDFReader(data: Data){
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesBegan(touches, with: event)
+        
+        goToPDFReader()
+    }
+    
+    private func goToPDFReader(){
         do {
-            let document = try MZPDFDocument(fileData: data)
+             let url = Bundle.main.path(forResource: "javaScript", ofType: "pdf")!
+            let document = try MZPDFDocument(filePath: url)
+//            let document = try MZPDFDocument(fileData: data)
             LogManager.shared.log.info(document.lastOpen ?? "")
             let viewModel = MZPDFReaderViewModel(document: document)
             let vc = MZPDFReaderViewController(viewModel: viewModel)
-            navigationController?.pushViewController(vc, animated: true)
+             present(vc, animated: true)
         } catch {
             LogManager.shared.log.error(error.localizedDescription)
         }

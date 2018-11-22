@@ -7,9 +7,22 @@
 //
 
 import UIKit
+
+fileprivate let StatusHeight: CGFloat = 20.0
+fileprivate let ToolbarHeight: CGFloat = 44.0
+fileprivate let PagebarHeight: CGFloat = 48.0
+
+fileprivate let ScrollViewOutsetSmall: CGFloat = 4.0
+fileprivate let ScrollViewOutsetLarge: CGFloat = 8.0
+
+fileprivate let TapAreaSize: CGFloat = 48.0
+
 class MZPDFReaderViewController: UIViewController {
     
     let viewModel: MZPDFReaderViewModel
+    
+    fileprivate let minimumPage: Int
+    fileprivate let maximumPage: Int
     
     fileprivate lazy var collectionLayout: UICollectionViewFlowLayout = {
         let layout = UICollectionViewFlowLayout()
@@ -31,9 +44,21 @@ class MZPDFReaderViewController: UIViewController {
         return cv
     }()
     
+    fileprivate lazy var mainPagebar: MZPDFMainPageBar = {
+        var pageBarRect = view.bounds
+        pageBarRect.size.height = PagebarHeight
+        pageBarRect.origin.y = (view.bounds.height - pageBarRect.height)
+        let mainPagebar = MZPDFMainPageBar(frame: pageBarRect, document: viewModel.document)
+        mainPagebar.delegate = self
+        return mainPagebar
+    }()
+    
     //MARK: --- Life Cycle
     init(viewModel: MZPDFReaderViewModel) {
         self.viewModel = viewModel
+        minimumPage = 1
+        maximumPage = viewModel.document.pageCount
+        MZPDFThumbCache.touchThumbCache(with: viewModel.document.guid)
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -49,6 +74,11 @@ class MZPDFReaderViewController: UIViewController {
         initBindings()
         
     }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        mainPagebar.updatePageBar()
+    }
     
     deinit {
         
@@ -56,7 +86,9 @@ class MZPDFReaderViewController: UIViewController {
     
     public override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        didSelectIndexPath(IndexPath(row: viewModel.currentPageIndex, section: 0))
+        
+        let currentPageIndex = currentSelectedPageIndexPathForCollecionView()
+        didSelectIndexPath(currentPageIndex)
     }
     override public var prefersStatusBarHidden: Bool {
         return navigationController?.isNavigationBarHidden == true
@@ -69,9 +101,7 @@ class MZPDFReaderViewController: UIViewController {
     /// adapt rolate layout
     public override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         coordinator.animate(alongsideTransition: { context in
-            let currentIndexPath = IndexPath(row: self.viewModel.currentPageIndex, section: 0)
-            self.collectionView.reloadItems(at: [currentIndexPath])
-            self.collectionView.scrollToItem(at: currentIndexPath, at: .centeredHorizontally, animated: false)
+            self.reloadPageContent()
         }) { context in
             //            self.thumbnailCollectionController?.currentPageIndex = self.currentPageIndex
         }
@@ -79,6 +109,28 @@ class MZPDFReaderViewController: UIViewController {
         super.viewWillTransition(to: size, with: coordinator)
     }
     
+    private func currentSelectedPageIndexPathForCollecionView() -> IndexPath{
+        return IndexPath(row: self.viewModel.currentPageIndex - 1, section: 0)
+    }
+    
+    private func reloadPageContent(){
+        let currentIndexPath = currentSelectedPageIndexPathForCollecionView()
+        self.collectionView.reloadItems(at: [currentIndexPath])
+        self.collectionView.scrollToItem(at: currentIndexPath, at: .centeredHorizontally, animated: false)
+    }
+    
+    func showDocument(at page: Int) {
+        if page != viewModel.currentPageIndex {
+            if (page < minimumPage) || (page > maximumPage) {
+                return
+            }
+            viewModel.currentPageIndex = page
+            
+            reloadPageContent()
+            
+            mainPagebar.updatePageBar()
+        }
+    }
     
     //MARK: --- Private Methods
     private func initViews(){
@@ -90,18 +142,20 @@ class MZPDFReaderViewController: UIViewController {
             collectionView.topAnchor.constraint(equalTo: view.topAnchor),
             collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             ])
+        
+        view.addSubview(mainPagebar)
+        
     }
     
     private func initBindings(){
         
-        collectionView.backgroundColor = viewModel.backgroundColor
+        collectionView.backgroundColor   = viewModel.backgroundColor
         collectionLayout.scrollDirection = viewModel.scrollDirection
         
     }
     private func  didSelectIndexPath(_ indexPath: IndexPath) {
         collectionView.scrollToItem(at: indexPath, at: .left, animated: false)
     }
-    
     
 }
 
@@ -126,6 +180,11 @@ extension MZPDFReaderViewController: MZPDFPageCollectionViewCellDelegate {
     /// - parameter shouldHide: whether or not the controller should hide the thumbnail controller
     private func hideThumbnailController(_ shouldHide: Bool) {
         //        self.thumbnailCollectionControllerBottom.constant = shouldHide ? -thumbnailCollectionControllerHeight.constant : 0
+        if shouldHide {
+            mainPagebar.hidePageBar()
+        }else {
+            mainPagebar.showPageBar()
+        }
     }
     
     func handleSingleTap(_ cell: MZPDFPageCollectionViewCell, pdfPageView: MZPDFPageView) {
@@ -144,26 +203,40 @@ extension MZPDFReaderViewController: MZPDFPageCollectionViewCellDelegate {
 
 extension MZPDFReaderViewController: UICollectionViewDelegateFlowLayout {
     public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: collectionView.frame.width - 1, height: collectionView.frame.height)
+        return CGSize(width: collectionView.frame.width, height: collectionView.frame.height)
     }
 }
 
 extension MZPDFReaderViewController: UIScrollViewDelegate {
     public func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        let updatedPageIndex: Int
+        
+        var updatedPageIndex: Int
         if viewModel.scrollDirection == .vertical {
-            updatedPageIndex = Int(round(max(scrollView.contentOffset.y, 0) / scrollView.bounds.height))
+            updatedPageIndex = Int(round(max(scrollView.contentOffset.y + scrollView.bounds.height, 0) / scrollView.bounds.height))
         } else {
-            updatedPageIndex = Int(round(max(scrollView.contentOffset.x, 0) / scrollView.bounds.width))
+            updatedPageIndex = Int(round(max(scrollView.contentOffset.x + scrollView.bounds.width, 0) / scrollView.bounds.width))
         }
+        if updatedPageIndex < 1 { // start from one
+            updatedPageIndex = 1
+        }
+        
         
         if updatedPageIndex != viewModel.currentPageIndex{
             //            if resetZoom {
             //                self.collectionView.reloadItems(at: [IndexPath(item: currentPageIndex, section: 0)])
             //            }
             viewModel.currentPageIndex = updatedPageIndex
+            mainPagebar.updatePageBar()
             //            thumbnailCollectionController?.currentPageIndex = currentPageIndex
         }
     }
 }
+
+extension MZPDFReaderViewController: MZPDFMainPageBarDelegate {
+    func gotoPage(_ page: Int, at pageBar: MZPDFMainPageBar) {
+        showDocument(at: page)
+    }
+    
+}
+
 
